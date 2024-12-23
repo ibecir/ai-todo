@@ -4,6 +4,7 @@ import ba.edu.ibu.aitodo.core.model.Task;
 import ba.edu.ibu.aitodo.core.service.TaskService;
 import ba.edu.ibu.aitodo.rest.dto.TaskDTO;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,9 +24,13 @@ public class TaskController {
         return ResponseEntity.ok(taskService.getById(id));
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/email/{email}")
+    @RequestMapping(method = RequestMethod.GET, path = "/email/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Task>> getTasksByUserEmail(@PathVariable String email) {
-        return ResponseEntity.ok(taskService.getTasksByUserEmail(email));
+        System.out.println("Email received: " + email); // Log the email
+        List<Task> tasks = taskService.getTasksByUserEmail(email);
+        for (Task task : tasks)
+            System.out.println("Task received: " + task.getId());
+        return ResponseEntity.ok(tasks);
     }
 
     @RequestMapping(method = RequestMethod.GET)
