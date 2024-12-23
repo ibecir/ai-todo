@@ -75,6 +75,6 @@ public class TaskService {
 
     public List<Task> getTasksByUserEmail(String email) {
         System.out.println("In the tasks service");
-        return taskRepository.findTasksByUser_Email(email);
+        return taskRepository.getAllTasksByUserEmail(email);
     }
 }
