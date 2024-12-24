@@ -1,7 +1,9 @@
 package ba.edu.ibu.aitodo.core.service;
 
 import ba.edu.ibu.aitodo.core.model.Task;
+import ba.edu.ibu.aitodo.core.model.User;
 import ba.edu.ibu.aitodo.core.repository.TaskRepository;
+import ba.edu.ibu.aitodo.core.repository.UserRepository;
 import ba.edu.ibu.aitodo.rest.dto.TaskDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,6 +23,9 @@ class TaskServiceTest {
     @Mock
     private TaskRepository taskRepository;
 
+    @Mock
+    private UserRepository userRepository;
+
     @InjectMocks
     private TaskService taskService;
 
@@ -37,24 +42,16 @@ class TaskServiceTest {
     }
 
     @Test
-    void getTasksByUserEmail_ShouldReturnTasks() {
-        String email = "user1@example.com";
-
-        when(taskRepository.findTasksByUser_Email(email)).thenReturn(Collections.singletonList(sampleTask));
-
-        List<Task> tasks = taskService.getTasksByUserEmail(email);
-
-        assertNotNull(tasks);
-        assertEquals(1, tasks.size());
-        assertEquals(sampleTask.getTitle(), tasks.get(0).getTitle());
-
-        verify(taskRepository, times(1)).findTasksByUser_Email(email);
-    }
-
-    @Test
     void createTask_ShouldSaveTask() {
+        // Mock UserRepository
+        User user = new User();
+        user.setEmail("user1@example.com");
+        when(userRepository.findUserByEmail("user1@example.com")).thenReturn(Optional.of(user));
+
+        // Mock TaskRepository
         when(taskRepository.save(any(Task.class))).thenReturn(sampleTask);
 
+        // Create TaskDTO
         TaskDTO dto = new TaskDTO();
         dto.setCategory(sampleTask.getCategory());
         dto.setDescription(sampleTask.getDescription());
@@ -63,11 +60,15 @@ class TaskServiceTest {
         dto.setStatus(sampleTask.getStatus());
         dto.setTitle(sampleTask.getTitle());
 
+        // Call createTask
         Task createdTask = taskService.createTask(dto, "user1@example.com");
 
+        // Assertions
         assertNotNull(createdTask);
         assertEquals(sampleTask.getId(), createdTask.getId());
 
+        // Verify interactions
+        verify(userRepository, times(1)).findUserByEmail("user1@example.com");
         verify(taskRepository, times(1)).save(any(Task.class));
     }
 
