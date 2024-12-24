@@ -26,10 +26,7 @@ public class TaskController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/email/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Task>> getTasksByUserEmail(@PathVariable String email) {
-        System.out.println("Email received: " + email); // Log the email
         List<Task> tasks = taskService.getTasksByUserEmail(email);
-        for (Task task : tasks)
-            System.out.println("Task received: " + task.getId());
         return ResponseEntity.ok(tasks);
     }
 

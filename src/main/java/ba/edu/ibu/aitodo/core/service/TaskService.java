@@ -48,11 +48,11 @@ public class TaskService {
             task.setUser(userOptional.get());
         }
 
-        if(taskDto.getCategory() == null){
-            task.setCategory(categoryRepository.getById(1L));
-        } else {
-            Category category = categoryRepository.getById(taskDto.getCategory().getId());
-            task.setCategory(category);
+        if(taskDto.getCategory() != null) {
+            Optional<Category> categoryOptional = categoryRepository.findById(taskDto.getCategory().getId());
+            if (categoryOptional.isPresent()) {
+                task.setCategory(categoryOptional.get());
+            }
         }
 
         return taskRepository.save(task);
@@ -74,7 +74,6 @@ public class TaskService {
     }
 
     public List<Task> getTasksByUserEmail(String email) {
-        System.out.println("In the tasks service");
         return taskRepository.getAllTasksByUserEmail(email);
     }
 }
