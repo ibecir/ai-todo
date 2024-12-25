@@ -26,6 +26,12 @@ public class Task {
     public Task() {
     }
 
+    public Task(Long id, String title, String description) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+    }
+
     // Getters and Setters
     public Long getId() {
         return id;

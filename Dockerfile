@@ -1,14 +1,9 @@
-# Use an official OpenJDK 21 image
-FROM openjdk:21-jdk-slim
+FROM maven:3.9.8-eclipse-temurin-21 AS build
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Set working directory
-WORKDIR /app
-
-# Copy the application JAR into the container
-COPY target/spring-api.jar /app/spring-api.jar
-
-# Expose the port the application will run on
+FROM openjdk:21
+COPY --from=build /target/ai-todo-0.0.1-SNAPSHOT.jar ai-todo.jar
 EXPOSE 8080
 
-# Command to run the application
-ENTRYPOINT ["java", "-jar", "/app/spring-api.jar"]
+ENTRYPOINT ["java","-jar","ai-todo.jar"]

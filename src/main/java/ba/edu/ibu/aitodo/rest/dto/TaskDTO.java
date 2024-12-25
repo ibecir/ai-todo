@@ -12,6 +12,13 @@ public class TaskDTO {
     private String status;
     private Category category;
 
+    public TaskDTO(String title, String description, String priority, String status) {
+        this.title = title;
+        this.description = description;
+        this.priority = priority;
+        this.status = status;
+    }
+
     public String getDescription() {
         return description;
     }

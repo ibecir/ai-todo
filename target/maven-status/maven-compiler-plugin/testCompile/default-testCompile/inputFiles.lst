@@ -1,2 +1,1 @@
-/Users/becir/Desktop/ai-todo/src/test/java/ba/edu/ibu/aitodo/AiTodoApplicationTests.java
-/Users/becir/Desktop/ai-todo/src/test/java/ba/edu/ibu/aitodo/rest/controller/TaskControllerTest.java
+/Users/becir/Desktop/ai-todo/src/test/java/ba/edu/ibu/aitodo/core/repository/TaskRepositoryTest.java

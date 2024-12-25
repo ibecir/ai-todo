@@ -1,8 +1,10 @@
 /Users/becir/Desktop/ai-todo/src/main/java/ba/edu/ibu/aitodo/AiTodoApplication.java
 /Users/becir/Desktop/ai-todo/src/main/java/ba/edu/ibu/aitodo/api/impl/mailgun/MailgunMailSender.java
 /Users/becir/Desktop/ai-todo/src/main/java/ba/edu/ibu/aitodo/api/impl/openai/OpenAICategorySuggester.java
+/Users/becir/Desktop/ai-todo/src/main/java/ba/edu/ibu/aitodo/api/impl/paypal/PaypalPaymentProcessor.java
 /Users/becir/Desktop/ai-todo/src/main/java/ba/edu/ibu/aitodo/core/api/categorysuggester/CategorySuggester.java
 /Users/becir/Desktop/ai-todo/src/main/java/ba/edu/ibu/aitodo/core/api/mailsender/MailSender.java
+/Users/becir/Desktop/ai-todo/src/main/java/ba/edu/ibu/aitodo/core/api/paymentprocessor/PaymentProcessor.java
 /Users/becir/Desktop/ai-todo/src/main/java/ba/edu/ibu/aitodo/core/model/Category.java
 /Users/becir/Desktop/ai-todo/src/main/java/ba/edu/ibu/aitodo/core/model/Task.java
 /Users/becir/Desktop/ai-todo/src/main/java/ba/edu/ibu/aitodo/core/model/User.java
