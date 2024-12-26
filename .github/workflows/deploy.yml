@@ -21,10 +21,13 @@ jobs:
         run: |
           curl -fsSL https://github.com/renderinc/render-cli/releases/latest/download/install.sh | bash
           echo "$HOME/.render/bin" >> $GITHUB_PATH
+          export PATH="$HOME/.render/bin:$PATH"
 
       # Step 3: Verify Render CLI installation
       - name: Verify Render CLI Installation
-        run: render --version
+        run: |
+          which render
+          render --version
 
       # Step 4: Deploy the application to Render
       - name: Deploy to Render
