@@ -1,4 +1,4 @@
-name: Deploy to Render (v1)
+name: v.1.0.1
 
 on:
   release:
