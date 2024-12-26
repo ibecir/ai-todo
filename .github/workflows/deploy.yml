@@ -19,7 +19,7 @@ jobs:
       # Install Render CLI (optional, if you prefer using the CLI)
       - name: Install Render CLI
         run: |
-          curl -fsSL https://render.com/deploy | bash
+          curl -fsSL https://github.com/renderinc/render-cli/releases/latest/download/install.sh | bash
 
       # Deploy the application
       - name: Deploy to Render
