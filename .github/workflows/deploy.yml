@@ -30,4 +30,4 @@ jobs:
         env:
           RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }} # Render API Key from GitHub secrets
         run: |
-          render deploys create --service ${{ secrets.RENDER_SERVICE_ID }} --branch ${{ github.ref_name }}
+          render deploys create ${{ secrets.RENDER_SERVICE_ID }} --branch ${{ github.ref_name }}
