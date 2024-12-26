@@ -12,18 +12,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repository
+      # Step 1: Checkout the code from the repository
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Install Render CLI (optional, if you prefer using the CLI)
+      # Step 2: Install Render CLI
       - name: Install Render CLI
         run: |
-          curl -fsSL https://render.com/deploy | bash
+          curl -fsSL https://github.com/renderinc/render-cli/releases/latest/download/install.sh | bash
+          echo "$HOME/.render/bin" >> $GITHUB_PATH
 
-      # Deploy the application
+      # Step 3: Verify Render CLI installation
+      - name: Verify Render CLI Installation
+        run: render --version
+
+      # Step 4: Deploy the application to Render
       - name: Deploy to Render
         env:
-          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }} # Use your Render API Key from GitHub Secrets
-        run: |
-          render deploy --service ${{ secrets.RENDER_SERVICE_ID }} --branch ${{ github.ref_name }}
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }} # Render API Key from GitHub secrets
+        run: render deploy --service ${{ secrets.RENDER_SERVICE_ID }} --branch ${{ github.ref_name }}
