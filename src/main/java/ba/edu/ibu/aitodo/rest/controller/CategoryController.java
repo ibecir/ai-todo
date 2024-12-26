@@ -27,7 +27,7 @@ public class CategoryController {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/create")
-    public ResponseEntity<Category> createTask(@RequestBody String categoryName) {
+    public ResponseEntity<Category> createCategory(@RequestBody String categoryName) {
         return ResponseEntity.ok(categoryService.createCategory(categoryName));
     }
 }
