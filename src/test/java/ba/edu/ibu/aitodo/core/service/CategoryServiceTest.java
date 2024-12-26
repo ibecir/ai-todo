@@ -56,7 +56,10 @@ public class CategoryServiceTest {
     @Test
     void testGetAllCategories() {
         // Given
-        List<Category> mockCategories = Arrays.asList(new Category(1L, "Work"), new Category(2L, "Personal"));
+        List<Category> mockCategories = Arrays.asList(
+                new Category(1L, "Work"),
+                new Category(2L, "Personal")
+        );
 
         // Mock behavior
         when(categoryRepository.findAll()).thenReturn(mockCategories);
