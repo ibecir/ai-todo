@@ -19,15 +19,11 @@ jobs:
       # Step 2: Install Render CLI
       - name: Install Render CLI
         run: |
-          curl -fsSL https://github.com/renderinc/render-cli/releases/latest/download/install.sh | bash
-          echo "$HOME/.render/bin" >> $GITHUB_PATH
-          export PATH="$HOME/.render/bin:$PATH"
+          curl -fsSL https://raw.githubusercontent.com/render-oss/cli/refs/heads/main/bin/install.sh | sh
 
-      # Step 3: Verify Render CLI installation
+      # Step 3: Verify Render CLI Installation
       - name: Verify Render CLI Installation
-        run: |
-          which render
-          render --version
+        run: render --version
 
       # Step 4: Deploy the application to Render
       - name: Deploy to Render
