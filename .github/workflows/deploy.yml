@@ -26,7 +26,7 @@ jobs:
         env:
           RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
         run: |
-          render workspace set aitodo-workspace
+          render workspace set aitodo-workspace # Replace with your workspace name
 
       # Step 4: Get Commit SHA
       - name: Get Commit SHA
