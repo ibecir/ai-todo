@@ -20,14 +20,12 @@ jobs:
       - name: Install Render CLI
         run: |
           curl -fsSL https://raw.githubusercontent.com/render-oss/cli/refs/heads/main/bin/install.sh | sh
-
       # Step 3: Set Render Workspace
       - name: Set Render Workspace
         env:
           RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
         run: |
           render workspace set aitodo-workspace -o json
-
       # Step 4: Get Commit SHA
       - name: Get Commit SHA
         id: git-info
@@ -42,4 +40,4 @@ jobs:
         env:
           RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
         run: |
-          render deploys create ${{ secrets.RENDER_SERVICE_ID }} --commit ${{ env.commit }}
+          render deploys create ${{ secrets.RENDER_SERVICE_ID }} --commit ${{ env.commit }} -o json --confirm
