@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:mysql://aitodo-do-user-3434337-0.m.db.ondigitalocean.com:25060/ai-todo?useSSL=true&requireSSL=true
+    username: doadmin
+    password: AVNS_z2GjOyUhkG5kvMJHuF9
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+openai:
+  secret: "sk-proj-test"
+
+email:
+  mailgun:
+    from-email: SmartTODO <noreply@smarttodo.org>
+    username: api
+    password: key-smt
+    frontend-url: 'https://localhost:3000/'
+    frontend-reset-password-url: 'https://localhost:3000/'

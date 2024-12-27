@@ -50,7 +50,10 @@ public class TaskControllerTest {
         when(taskService.getById(taskId)).thenReturn(mockTask);
 
         // When & Then
-        mockMvc.perform(get("/api/tasks/{id}", taskId)).andExpect(status().isOk()).andExpect(jsonPath("$.id").value(taskId)).andExpect(jsonPath("$.title").value("Task 1"));
+        mockMvc.perform(get("/api/tasks/{id}", taskId))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(taskId))
+                .andExpect(jsonPath("$.title").value("Task 1"));
     }
 
     @Test
@@ -86,7 +89,12 @@ public class TaskControllerTest {
         when(taskService.createTask(any(TaskDTO.class), eq(email))).thenReturn(mockTask);
 
         // When & Then
-        mockMvc.perform(post("/api/tasks/{email}", email).content(objectMapper.writeValueAsString(taskDTO)).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$.id").value(1)).andExpect(jsonPath("$.title").value("Task 1"));
+        mockMvc.perform(post("/api/tasks/{email}", email)
+                .content(objectMapper.writeValueAsString(taskDTO))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.title").value("Task 1"));
     }
 
     @Test

@@ -12,7 +12,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
-class TaskRepositoryUnitTest {
+class TaskRepositoryTest {
 
     @Mock
     private TaskRepository taskRepository;
