@@ -8,6 +8,9 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
 
 openai:
   secret: ${OPENAI_SECRET}
