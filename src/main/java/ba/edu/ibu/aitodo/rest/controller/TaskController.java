@@ -30,6 +30,12 @@ public class TaskController {
         return ResponseEntity.ok(tasks);
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Task>> getAllTasksNew() {
+        List<Task> tasks = taskService.getAllTasks();
+        return ResponseEntity.ok(tasks);
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<Task>> getAllTasks() {
         return ResponseEntity.ok(taskService.getAllTasks());
