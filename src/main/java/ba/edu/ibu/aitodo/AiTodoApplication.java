@@ -9,5 +9,4 @@ public class AiTodoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AiTodoApplication.class, args);
 	}
-
 }
