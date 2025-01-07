@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 /**
  * Service class responsible for managing and interacting with task categories.
  * <p>
@@ -18,27 +17,27 @@ import java.util.List;
  * for tasks using an AI-powered recommendation engine (GPT-3.5-turbo-instruct model).
  * </p>
  *
- * <h3>Responsibilities:</h3>
+ * <h2>Responsibilities:</h2>
  * <ul>
  *     <li>Interacting with the {@code CategoryRepository} to persist and retrieve category data.</li>
  *     <li>Utilizing the {@code CategorySuggester} (based on GPT-3.5-turbo-instruct) to recommend suitable categories for tasks.</li>
  *     <li>Providing task-related services by interacting with the {@code TaskRepository}, if applicable.</li>
  * </ul>
  *
- * <h3>Dependencies:</h3>
+ * <h2>Dependencies:</h2>
  * <ul>
  *     <li>{@code CategoryRepository}: Manages database interactions for category entities.</li>
  *     <li>{@code TaskRepository}: Handles database interactions for task entities.</li>
  *     <li>{@code CategorySuggester}: Provides AI-powered category suggestions based on task descriptions.</li>
  * </ul>
  *
- * <h3>Thread Safety:</h3>
+ * <h2>Thread Safety:</h2>
  * <p>
  * This service is stateless and thread-safe as long as the underlying repositories and suggesters
  * are themselves thread-safe, which is typically the case in a Spring-managed environment.
  * </p>
  *
- * <h3>Usage Example:</h3>
+ * <h2>Usage Example:</h2>
  * <pre>
  * {@code
  * @Autowired
@@ -70,8 +69,8 @@ public class CategoryService {
     /**
      * Constructs a new {@code CategoryService} with the specified dependencies.
      *
-     * @param categoryRepository The repository for managing category data.
-     * @param taskRepository The repository for managing task data.
+     * @param categoryRepository      The repository for managing category data.
+     * @param taskRepository          The repository for managing task data.
      * @param openAiCategorySuggester The AI-powered suggester for determining task categories.
      */
     public CategoryService(CategoryRepository categoryRepository, TaskRepository taskRepository, CategorySuggester openAiCategorySuggester) {
@@ -88,22 +87,7 @@ public class CategoryService {
      * determines the most relevant category based on the context and semantics of the input text.
      * </p>
      *
-     * <h3>Model Details:</h3>
-     * <ul>
-     *     <li>The GPT-3.5-turbo-instruct model is optimized for processing concise instructions and providing structured responses.</li>
-     *     <li>It leverages vast knowledge and contextual understanding to suggest categories with high accuracy.</li>
-     * </ul>
-     *
-     * <h3>Usage Example:</h3>
-     * <pre>
-     * {@code
-     * String taskDescription = "Prepare monthly financial reports";
-     * String suggestedCategory = suggestCategory(taskDescription);
-     * System.out.println("Suggested Category: " + suggestedCategory);
-     * }
-     * </pre>
-     *
-     * <h3>Notes:</h3>
+     * <p><strong>Notes:</strong></p>
      * <ul>
      *     <li>Ensure the task description is clear and concise to improve the accuracy of AI-generated suggestions.</li>
      *     <li>The AI model's output may be influenced by how well the task description is articulated.</li>
@@ -128,15 +112,7 @@ public class CategoryService {
      * It is typically used to display the full list of categories for selection, management, or reporting purposes.
      * </p>
      *
-     * <h3>Usage Example:</h3>
-     * <pre>
-     * {@code
-     * List<Category> categories = getAllCategories();
-     * categories.forEach(category -> System.out.println(category.getName()));
-     * }
-     * </pre>
-     *
-     * <h3>Notes:</h3>
+     * <p><strong>Notes:</strong></p>
      * <ul>
      *     <li>If no categories exist, the method will return an empty list, not {@code null}.</li>
      *     <li>The method interacts directly with the repository and may reflect database-level constraints.</li>
@@ -157,16 +133,7 @@ public class CategoryService {
      * It returns the created {@code Category} object, which reflects the saved state.
      * </p>
      *
-     * <h3>Usage Example:</h3>
-     * <pre>
-     * {@code
-     * String categoryName = "Finance";
-     * Category newCategory = createCategory(categoryName);
-     * System.out.println("Created Category: " + newCategory.getName());
-     * }
-     * </pre>
-     *
-     * <h3>Notes:</h3>
+     * <p><strong>Notes:</strong></p>
      * <ul>
      *     <li>The {@code categoryName} must be unique within the repository. If duplicate category names are not allowed,
      *         ensure validation at a higher level or within the repository logic.</li>
@@ -185,6 +152,4 @@ public class CategoryService {
         categoryRepository.save(category);
         return category;
     }
-
-
 }
