@@ -2,18 +2,78 @@ package ba.edu.ibu.aitodo.core.service;
 
 import ba.edu.ibu.aitodo.core.api.categorysuggester.CategorySuggester;
 import ba.edu.ibu.aitodo.core.model.Category;
+import ba.edu.ibu.aitodo.core.model.Task;
 import ba.edu.ibu.aitodo.core.repository.CategoryRepository;
 import ba.edu.ibu.aitodo.core.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
+/**
+ * Service class responsible for managing and interacting with task categories.
+ * <p>
+ * The {@code CategoryService} acts as the central point for operations related to categories,
+ * such as creating new categories, retrieving all existing categories, and suggesting categories
+ * for tasks using an AI-powered recommendation engine (GPT-3.5-turbo-instruct model).
+ * </p>
+ *
+ * <h3>Responsibilities:</h3>
+ * <ul>
+ *     <li>Interacting with the {@code CategoryRepository} to persist and retrieve category data.</li>
+ *     <li>Utilizing the {@code CategorySuggester} (based on GPT-3.5-turbo-instruct) to recommend suitable categories for tasks.</li>
+ *     <li>Providing task-related services by interacting with the {@code TaskRepository}, if applicable.</li>
+ * </ul>
+ *
+ * <h3>Dependencies:</h3>
+ * <ul>
+ *     <li>{@code CategoryRepository}: Manages database interactions for category entities.</li>
+ *     <li>{@code TaskRepository}: Handles database interactions for task entities.</li>
+ *     <li>{@code CategorySuggester}: Provides AI-powered category suggestions based on task descriptions.</li>
+ * </ul>
+ *
+ * <h3>Thread Safety:</h3>
+ * <p>
+ * This service is stateless and thread-safe as long as the underlying repositories and suggesters
+ * are themselves thread-safe, which is typically the case in a Spring-managed environment.
+ * </p>
+ *
+ * <h3>Usage Example:</h3>
+ * <pre>
+ * {@code
+ * @Autowired
+ * private CategoryService categoryService;
+ *
+ * // Suggesting a category
+ * String suggestedCategory = categoryService.suggestCategory("Prepare a financial report");
+ *
+ * // Creating a new category
+ * Category newCategory = categoryService.createCategory("Finance");
+ *
+ * // Retrieving all categories
+ * List<Category> categories = categoryService.getAllCategories();
+ * }
+ * </pre>
+ *
+ * @see Category
+ * @see Task
+ * @see CategoryRepository
+ * @see TaskRepository
+ * @see CategorySuggester
+ */
 @Service
 public class CategoryService {
     private final CategoryRepository categoryRepository;
     private final TaskRepository taskRepository;
     private final CategorySuggester openAiCategorySuggester;
 
+    /**
+     * Constructs a new {@code CategoryService} with the specified dependencies.
+     *
+     * @param categoryRepository The repository for managing category data.
+     * @param taskRepository The repository for managing task data.
+     * @param openAiCategorySuggester The AI-powered suggester for determining task categories.
+     */
     public CategoryService(CategoryRepository categoryRepository, TaskRepository taskRepository, CategorySuggester openAiCategorySuggester) {
         this.categoryRepository = categoryRepository;
         this.taskRepository = taskRepository;
